@@ -8,7 +8,7 @@ Netstat Connection Monitoring is a network monitoring tool that runs multiple ne
 ![Static Badge](https://img.shields.io/badge/license-MIT-blue)
 <a href="https://github.com/Nicofontanarosa"><img src="https://img.shields.io/badge/powered_by-Nicofontanarosa-blueviolet"></a>
 
-## Features
+## ⚡ Features
 
 - Continuous monitoring of active network connections
 - Detection of new or modified connections
@@ -26,7 +26,9 @@ Netstat Connection Monitoring is a network monitoring tool that runs multiple ne
 - Timestamped logs for easier tracking
 - Console output for real-time visibility
 
-## How It Works
+---
+
+# 🛠 How It Works
 
 The script periodically executes different `netstat` commands and:
 1. Collects raw connection data
@@ -37,7 +39,9 @@ The script periodically executes different `netstat` commands and:
 
 The monitoring loop runs every **5 seconds**.
 
-## Log Files Generated
+---
+
+# 📁 Log Files Generated
 
 | File Name | Description |
 |---------|-------------|
@@ -51,23 +55,30 @@ The monitoring loop runs every **5 seconds**.
 | `routing_table.txt` | Routing table (`netstat -r`) |
 | `processes_log.txt` | Network-related processes |
 
-## Requirements
+---
 
-- Python 3.x
-- Operating System: **Windows** (required for `netstat` flags used)
+# 📌 Requirements
 
-### Python Standard Libraries Used
-No external Python libraries are required.
-The script uses only:
-- `subprocess`
-- `time`
-- `logging`
-- `datetime`
+To run the `Net_Conn_Monitor.pyw` script, you need to have **Python** installed on your system ( *Tested on Python version >= 3.12* )
+The script uses the following standard libraries, which are included in the Python Standard Library
 
-## Usage
+- ✅ No external dependencies are required
+- Operating System: **Windows** ( required for `netstat` flags used )
 
-Run the script directly:
+---
 
-```bash
-python monitor.py
+# 📄 License
 
+This project is distributed under the terms of the MIT License. A complete copy of the license is available in the [LICENSE](LICENSE) file within this repository. Any contribution made to this project will be licensed under the same MIT License
+
+- Author: Nicolò Fontanarosa
+- Email: nickcompanyofficial@gmail.com
+- Year: 2025
+
+---
+
+# 🙌 DISCLAIMER
+
+While I do my best to detect location anomalies, I cannot guarantee that this software is error-free or 100% accurate. Please ensure that you respect users' privacy and have proper authorization to monitor, capture, and inspect network traffic
+
+![GitHub followers](https://img.shields.io/github/followers/Nicofontanarosa?style=social)
