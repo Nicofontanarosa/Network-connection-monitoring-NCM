@@ -1,0 +1,40 @@
+netstat mostra le statistiche del protocollo e le connessioni TCP/IP UDP correnti
+
+----------------- NON USATE -----------------
+
+-a            Mostra tutte le connessioni e le porte di ascolto
+
+-f            Mostra Fully Qualified Domain Names (FQDN) per gli indirizzi stranieri ( DNS migliore )
+
+-y            Mostra il modello di connessione TCP per tutte le connessioni
+
+interval      Mostra di nuovo le statistiche selezionate, inserendo intervalli di secondi tra ogni visualizzazione ( meglio il mio programma )
+
+-i            Mostra il tempo in cui una connessione TCP si trova nel suo stato corrente
+
+-d            Mostra il valore DSCP associato a ogni connessione
+
+-t            Mostra lo stato di offload della connessione corrente
+
+----------------- USATE -----------------
+
+-b            Mostra l'eseguibile coinvolto nella creazione di ogni connessione o porta di ascolto. In alcuni casi, eseguibili noti ospitano più componenti indipendenti
+	      In questo caso viene visualizzato il nome dell'eseguibile che è in [] in basso mentre in alto si trova il componente chiamato,
+              e così via fino al raggiungimento di TCP/IP. Richiede permessi amministratore
+-q            Mostra tutte le connessioni, le porte di ascolto e le porte TCP non di ascolto associate. Le porte non di ascolto associate potrebbero essere associate o meno
+              a una connessione attiva ( un po + dettagliato di -a )
+-o            Mostra l'ID processo di proprietà associato a ogni connessione
+-n            Mostra i numeri di indirizzi e porte in formato numerico ( consente un esecuzione molto + veloce )
+
+-p proto      Mostra le connessioni per il protocollo specificato dal protocollo; il protocollo può essere: TCP, UDP, TCPv6 o UDPv6
+
+-s            Mostra le statistiche per protocollo. I protocolli sono IP, IPv6, ICMP, ICMPv6, TCP, TCPv6, UDP e UDPv6
+-e            Mostra le statistiche Ethernet
+
+-r            Mostra la tabella di routing
+
+-c            Visualizza un elenco di processi ordinati in base al numero di TCP o UDP e porte attualmente utilizzate
+
+-x            Mostra connessioni NetworkDirect, listener ed endpoint condivisi ovvero connessioni ad alte prestazioni
+
+-------------------------------------------

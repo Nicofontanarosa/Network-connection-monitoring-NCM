@@ -1,0 +1,108 @@
+Nel file routing_log avremo una cosa del genere:
+
+Elenco interfacce
+
+troviamo: numero_interfaccia ...... MAC_interfaccia ..... nome_interfaccia
+es: 			6    ...   da f3 bc 41 36 01 .... Microsoft Wi-Fi Direct Virtual Adapter #3
+
+  6...da f3 bc 41 36 01 ......Microsoft Wi-Fi Direct Virtual Adapter #3
+  4...ea f3 bc 41 36 01 ......Microsoft Wi-Fi Direct Virtual Adapter #4			
+
+Questi adattatori virtuali sono creati dal sistema operativo Windows per il Wi-Fi Direct, una tecnologia che permette a dispositivi di comunicare direttamente senza un router ad esempio, per trasferimenti di file o hotspot
+
+  2...d8 f3 bc 41 36 01 ......Qualcomm Atheros QCA9377 Wireless Network Adapter		
+
+Questa è la tua scheda di rete Wi-Fi fisica che gestisce tutte le connessioni wireless del tuo computer
+
+ 10...c0 18 50 02 72 5f ......Realtek PCIe GbE Family Controller
+
+Questa è la scheda di rete Ethernet fisica del tuo computer che gestisce le connessioni cablate (LAN) tramite cavo Ethernet
+
+  1...........................Software Loopback Interface 1
+
+in 1...........................Software Loopback Interface 1
+il MAC address non è presente, in quanto si tratta di una connessione logica e non fisica dato che
+è una connessione virtuale che rappresenta la loopback interface del sistema, utilizzata per comunicare con se stessi
+
+30...00 15 5d fe f4 40 ......Hyper-V Virtual Ethernet Adapter
+
+Questo adattatore è creato dal software Hyper-V, il gestore di macchine virtuali incluso in Windows che consente 
+alle macchine virtuali di connettersi alla rete del computer host. Viene creato automaticamente quando si abilita Hyper-V
+
+IPv4 Tabella route
+
+Route attive:
+   Indirizzo rete             Mask          Gateway      Interfaccia  Metrica
+          0.0.0.0          0.0.0.0    192.168.1.254     192.168.1.52     35
+
+0.0.0.0/0 è una regola generica per qualsiasi traffico che non corrisponde a nessuna rete specifica ( va al router )
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+tutti gli indirizzi che iniziano con 127.x.x.x fanno parte del loopback
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+l'indirizzo 127.0.0.1 fa parte del loopback
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+l'indirizzo 127.255.255.255 fa parte del loopback
+
+       172.29.0.0    255.255.240.0         On-link        172.29.0.1   5256
+       172.29.0.1  255.255.255.255         On-link        172.29.0.1   5256
+    172.29.15.255  255.255.255.255         On-link        172.29.0.1   5256
+
+Le reti con 172.29.x.x sono probabilmente configurate da:
+
+Software di virtualizzazione ( es. Hyper-V, VirtualBox, VMware ) che crea reti private per comunicazioni interne
+tra il tuo sistema operativo e le macchine virtuali
+
+      192.168.1.0    255.255.255.0         On-link      192.168.1.52    291
+     192.168.1.52  255.255.255.255         On-link      192.168.1.52    291
+
+ l'intervallo da 192.168.1.0 a 192.168.1.255 rimane in locale e non va oltre il router
+
+    192.168.1.255  255.255.255.255         On-link      192.168.1.52    291
+
+192.168.1.255 è l'indirizzo broadcast della tua rete locale ( va nella mia rete in broadcast )
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+        224.0.0.0        240.0.0.0         On-link        172.29.0.1   5256
+        224.0.0.0        240.0.0.0         On-link      192.168.1.52    291
+
+224.0.0.0/4 è il range di indirizzi IPv4 multicast ( vanno nella mia rete / computer )
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+  255.255.255.255  255.255.255.255         On-link        172.29.0.1   5256
+  255.255.255.255  255.255.255.255         On-link      192.168.1.52    291
+
+l'indirizzo broadcast della tua rete locale ( va nella mia rete in broadcast )
+
+
+Indirizzo rete: Specifica la rete di destinazione o l'indirizzo IP per cui è valida questa regola di routing
+Mask: Indica la subnet mask associata all'indirizzo di rete
+Interfaccia: Specifica l'indirizzo IP dell'interfaccia di rete da cui parte il traffico
+Gateway: l'indirizzo del gateway (router) da utilizzare per raggiungere la destinazione
+"On-link", significa che il pacchetto può essere inviato direttamente all'interfaccia di rete senza passare per un gateway ( computer rete locale )
+
+Route permanenti:
+  Nessuna
+
+Le route permanenti sono le rotte di rete che rimangono attive anche dopo un riavvio del sistema. Se in questa sezione è indicato "Nessuna"
+significa che al momento non ci sono rotte statiche configurate per essere persistenti. Le route attive nella sezione precedente sono route dinamiche,
+che vengono configurate temporaneamente dal sistema o dai dispositivi di rete e potrebbero essere rimosse o cambiate dopo un riavvio
+
+IPv6 Tabella route
+
+Route attive:
+Interf Metrica 	Rete Destinazione      		Gateway
+  1    331 	::1/128                  	On-link			equivalente a 127.0.0.1 per IPv4 la rotta ::1/128 è utilizzata per comunicare con il proprio sistema senza passare attraverso una rete fisica
+ 30   5256 	fe80::/64                	On-link			fe80::/64 è un blocco di indirizzi IPv6 per le indagini link-local, usato per la comunicazione all'interno della rete locale
+  2    291 	fe80::/64                	On-link		
+ 30   5256 	fe80::69f0:ddd6:d47c:879c/128   On-link			fe80::/64 è un blocco di indirizzi IPv6 per le indagini link-local, usato per la comunicazione all'interno della rete locale
+  2    291 	fe80::d2c9:17ee:c4b8:ce9e/128   On-link
+  1    331 	ff00::/8                 	On-link
+ 30   5256 	ff00::/8                 	On-link
+  2    291 	ff00::/8                 	On-link
+
