@@ -1,7 +1,5 @@
 # Network connection monitoring NCM
 
-### What is Network connection monitoring NCM ?
-
 Netstat Connection Monitoring is a network monitoring tool that runs multiple netstat commands with different parameters to analyze active network connections in real time. It is useful for understanding network behavior, tracking open sockets, and gaining visibility into system-level network activity.
 
 ![Static Badge](https://img.shields.io/badge/python-%20%3E%203.12-green?style=flat&labelColor=red&color=greed)
